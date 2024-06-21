@@ -30,4 +30,25 @@ const task2 = (num, steps = 0) => {
   
   console.log(task2(196));
   console.log(task2(96));
+
+  let variantsArr = [];
+  let usedChars = [];
+
+function task3(input) {
+  let chars;
+  input.forEach((num, index) => {
+    chars = input.splice(index, 1)[0];
+    usedChars.push(chars);
+
+    if (input.length == 0) {
+      variantsArr.push(usedChars.slice());
+    }
+    task3(input);
+    input.splice(index, 0, chars);
+    usedChars.pop();
+  });
+  return variantsArr;
+}
+
+console.log(task3([1, 2, 3]));
   
